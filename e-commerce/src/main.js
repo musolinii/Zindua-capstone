@@ -8,6 +8,8 @@ let shop = document.getElementById("shop");
 
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
+
+
 /**
  * ! Generates the shop with product cards composed of
  * ! images, title, price, buttons, description
@@ -17,7 +19,7 @@ let generateShop = () => {
   return (shop.innerHTML = shopItemsData
     .map((x) => {
       let { id, title, description, image, price } = x;
-      let search = basket.find((y) => y.id === id) || [];
+      let search = basket.find((y) => y=== id) || [];
       return `
     <div id=product-id-${id} class="item">
       <img width="220" src=${image} alt="">
@@ -59,10 +61,10 @@ let increment = (id) => {
   } else {
     search.item += 1;
   }
-
-  console.log(basket);
-  update(selectedItem);
+  
+  
   localStorage.setItem("data", JSON.stringify(basket));
+  update(selectedItem);
 };
 
 /**
@@ -79,10 +81,12 @@ let decrement = (id) => {
     search.item -= 1;
   }
 
+
+
+  localStorage.setItem("data", JSON.stringify(basket));
   update(selectedItem);
   basket = basket.filter((x) => x.item !== 0);
-  console.log(basket);
-  localStorage.setItem("data", JSON.stringify(basket));
+  
 };
 
 /**
@@ -95,9 +99,9 @@ let update = (id) => {
   calculation();
 };
 
-/**
- * ! To calculate total amount of selected Items
- */
+// /**
+//  * ! To calculate total amount of selected Items
+//  */
 
 let calculation = () => {
   let cartIcon = document.getElementById("cartAmount");
